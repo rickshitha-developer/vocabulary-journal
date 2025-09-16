@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word List | Vocabulary With Us</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Nunito", sans-serif;
+      background: #f4f6fb;
+      color: #333;
+    }
+    h1, h2 {
+      font-family: "Merriweather", serif;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #ff5722, #ff9800);
+    }
+    .navbar-brand {
+      font-family: "Pacifico", cursive;
+      font-weight: bold;
+      font-size: 1.8rem;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .nav-link:hover {
+      color: #000 !important;
+      background: #ffd54f;
+      border-radius: 8px;
+      padding: 6px 12px;
+    }
+    .hero {
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPMEcIAwDe9cKes7GQtMXi3FJu-Z_G_IpNfg&s') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 120px 25px;
+      margin: 30px 0;
+      border-radius: 20px;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      border-radius: 20px;
+    }
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+    .search-box input {
+      border-radius: 50px;
+      padding: 10px 20px;
+    }
+    .filter-btn {
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .filter-btn.active {
+      border: 2px solid white;
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    }
+    .not-found { display: none; }
+    footer {
+      background: #212121;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      border-radius: 15px 15px 0 0;
+    }
+    table th, table td {
+      vertical-align: middle !important;
+    }
+    table tbody tr:hover {
+      background: #f1f1f1;
+    }
+    /* Level Colors */
+    .easy-row { background: green !important; }
+    .medium-row { background: #fff3cd !important; }
+    .hard-row { background: #f8d7da !important; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">📖 Vocabulary With Us</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="bi bi-list"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door-fill"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="wordlist.html"><i class="bi bi-journal-text"></i> Word List</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html"><i class="bi bi-play-btn-fill"></i> Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-people-fill"></i> About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Word List</h1>
+    <p>Explore Easy, Medium, and Hard Vocabulary Levels</p>
+  </section>
+
+  <!-- Search & Filter -->
+  <div class="container my-4 text-center">
+    <div class="row g-3 justify-content-center">
+      <div class="col-md-6 search-box d-flex">
+        <span class="input-group-text bg-primary text-white"><i class="bi bi-search"></i></span>
+        <input type="text" id="searchInput" class="form-control" placeholder="Search a word...">
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-success filter-btn active" data-level="easy"><i class="bi bi-check-circle"></i> Easy</button>
+        <button class="btn btn-warning filter-btn" data-level="medium"><i class="bi bi-lightbulb"></i> Medium</button>
+        <button class="btn btn-danger filter-btn" data-level="hard"><i class="bi bi-fire"></i> Hard</button>
+      </div>
+    </div>
+    <div class="alert alert-danger not-found mt-3" id="notFoundMessage">
+      Word not found! Try a dictionary:
+      <a href="https://www.oxfordlearnersdictionaries.com/" target="_blank">Oxford</a> |
+      <a href="https://dictionary.cambridge.org/" target="_blank">Cambridge</a>
+    </div>
+  </div>
+
+  <!-- Word Table -->
+  <div class="container my-5">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>Word</th>
+            <th>Meaning</th>
+            <th>Synonyms</th>
+            <th>Antonyms</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody id="wordTableBody">
+          <!-- Words will be populated here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Vocabulary Journal | Built with ❤️ for learners</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const words = {
+  easy: [
+    {word:"Bright",meaning:"Giving out much light",example:"The bright sun rose.",syn:"Shiny",ant:"Dull"},
+    {word:"Happy",meaning:"Feeling joy",example:"She felt happy today.",syn:"Joyful",ant:"Sad"},
+    {word:"Fast",meaning:"Moving quickly",example:"The car is fast.",syn:"Quick",ant:"Slow"},
+    {word:"Calm",meaning:"Peaceful",example:"The sea is calm.",syn:"Quiet",ant:"Angry"},
+    {word:"Small",meaning:"Of little size",example:"A small puppy barked.",syn:"Tiny",ant:"Big"},
+    {word:"Kind",meaning:"Friendly and generous",example:"She is very kind to everyone.",syn:"Caring",ant:"Mean"},
+    {word:"Cold",meaning:"Low temperature",example:"It is very cold today.",syn:"Chilly",ant:"Hot"},
+    {word:"Strong",meaning:"Having strength",example:"He is strong enough to lift it.",syn:"Powerful",ant:"Weak"},
+    {word:"Smart",meaning:"Intelligent",example:"She is a smart student.",syn:"Clever",ant:"Dumb"},
+    {word:"Easy",meaning:"Not difficult",example:"This question is easy.",syn:"Simple",ant:"Hard"},
+    {word:"Near",meaning:"Close by",example:"The school is near.",syn:"Close",ant:"Far"},
+    {word:"Clean",meaning:"Free from dirt",example:"Keep your room clean.",syn:"Tidy",ant:"Dirty"},
+    {word:"Quiet",meaning:"No noise",example:"The library is quiet.",syn:"Silent",ant:"Loud"},
+    {word:"Young",meaning:"Not old",example:"She is young.",syn:"Youthful",ant:"Old"},
+    {word:"Brave",meaning:"Courageous",example:"He was brave in battle.",syn:"Courageous",ant:"Cowardly"},
+    {word:"Tall",meaning:"Of great height",example:"The tree is tall.",syn:"High",ant:"Short"},
+    {word:"Light",meaning:"Not heavy",example:"The bag is light.",syn:"Weightless",ant:"Heavy"},
+    {word:"Sweet",meaning:"Pleasant taste",example:"The candy is sweet.",syn:"Sugary",ant:"Bitter"},
+    {word:"Hot",meaning:"High temperature",example:"The tea is hot.",syn:"Warm",ant:"Cold"},
+    {word:"Good",meaning:"Morally right",example:"She is a good person.",syn:"Nice",ant:"Bad"},
+    {word:"Bad",meaning:"Not good",example:"This is a bad habit.",syn:"Poor",ant:"Good"},
+    {word:"Rich",meaning:"Having wealth",example:"He is rich.",syn:"Wealthy",ant:"Poor"},
+    {word:"Poor",meaning:"Having little money",example:"The village was poor.",syn:"Needy",ant:"Rich"},
+    {word:"Soft",meaning:"Not hard",example:"The pillow is soft.",syn:"Cushy",ant:"Hard"},
+    {word:"Hard",meaning:"Not soft",example:"The stone is hard.",syn:"Solid",ant:"Soft"},
+    {word:"Long",meaning:"Extending far",example:"It was a long road.",syn:"Extended",ant:"Short"},
+    {word:"Short",meaning:"Not long",example:"The skirt is short.",syn:"Brief",ant:"Long"},
+    {word:"Beautiful",meaning:"Pleasant to see",example:"The flower is beautiful.",syn:"Lovely",ant:"Ugly"},
+    {word:"Ugly",meaning:"Not attractive",example:"The house is ugly.",syn:"Unpleasant",ant:"Beautiful"},
+    {word:"Friendly",meaning:"Kind and pleasant",example:"He is friendly.",syn:"Kind",ant:"Unfriendly"},
+    {word:"Sad",meaning:"Feeling unhappy",example:"She was sad today.",syn:"Unhappy",ant:"Happy"},
+    {word:"Angry",meaning:"Feeling strong displeasure",example:"He got angry.",syn:"Mad",ant:"Calm"},
+    {word:"Brighten",meaning:"Make lighter or happier",example:"Smiles brighten the room.",syn:"Lighten",ant:"Darken"},
+    {word:"Cleanse",meaning:"Make clean",example:"He cleansed the wound.",syn:"Purify",ant:"Dirty"},
+    {word:"Assist",meaning:"Help",example:"He assisted her.",syn:"Help",ant:"Hinder"},
+    {word:"Move",meaning:"Change position",example:"Please move the chair.",syn:"Shift",ant:"Stay"},
+    {word:"Build",meaning:"Construct",example:"They built a house.",syn:"Construct",ant:"Destroy"},
+    {word:"Play",meaning:"Engage in fun activity",example:"The kids play outside.",syn:"Enjoy",ant:"Work"},
+    {word:"Jump",meaning:"Leap into air",example:"The cat jumped.",syn:"Leap",ant:"Fall"},
+    {word:"Run",meaning:"Move fast",example:"He runs every morning.",syn:"Sprint",ant:"Walk"},
+    {word:"Walk",meaning:"Move on feet",example:"We walk to school.",syn:"Stroll",ant:"Run"},
+    {word:"Listen",meaning:"Pay attention to sound",example:"Listen to me.",syn:"Hear",ant:"Ignore"},
+    {word:"Look",meaning:"Use eyes",example:"Look at the sky.",syn:"See",ant:"Ignore"},
+    {word:"Speak",meaning:"Talk",example:"She speaks English.",syn:"Talk",ant:"Listen"},
+    {word:"Read",meaning:"Look at written words",example:"I read a book.",syn:"Peruse",ant:"Write"},
+    {word:"Write",meaning:"Put words on paper",example:"He writes a letter.",syn:"Compose",ant:"Read"},
+    {word:"Eat",meaning:"Consume food",example:"They eat lunch.",syn:"Devour",ant:"Fast"},
+    {word:"Drink",meaning:"Consume liquid",example:"He drinks water.",syn:"Sip",ant:"Spit"},
+    {word:"Sleep",meaning:"Rest with eyes closed",example:"I sleep at night.",syn:"Nap",ant:"Awake"},
+    {word:"Wake",meaning:"Stop sleeping",example:"Wake up early.",syn:"Arise",ant:"Sleep"},
+    {word:"Open",meaning:"Not closed",example:"Open the door.",syn:"Unseal",ant:"Close"},
+    {word:"Close",meaning:"Shut",example:"Close the window.",syn:"Seal",ant:"Open"}
+  ],
+  
+  medium: [
+    {word:"Courage",meaning:"Bravery",example:"He showed courage.",syn:"Bravery",ant:"Fear"},
+    {word:"Wisdom",meaning:"Good judgment",example:"Her wisdom guided us.",syn:"Knowledge",ant:"Foolishness"},
+    {word:"Fortune",meaning:"Luck or wealth",example:"He made a fortune.",syn:"Wealth",ant:"Poverty"},
+    {word:"Honest",meaning:"Truthful",example:"She gave an honest answer.",syn:"Truthful",ant:"Dishonest"},
+    {word:"Generous",meaning:"Willing to give",example:"He is generous with his time.",syn:"Kind",ant:"Selfish"},
+    {word:"Patient",meaning:"Able to wait calmly",example:"Be patient with learning.",syn:"Tolerant",ant:"Impatient"},
+    {word:"Famous",meaning:"Well-known",example:"He is a famous actor.",syn:"Renowned",ant:"Unknown"},
+    {word:"Ancient",meaning:"Very old",example:"The pyramid is ancient.",syn:"Old",ant:"Modern"},
+    {word:"Modern",meaning:"Relating to present times",example:"This building is modern.",syn:"Contemporary",ant:"Ancient"},
+    {word:"Brilliant",meaning:"Very bright or clever",example:"She is a brilliant student.",syn:"Smart",ant:"Dull"},
+    {word:"Honorable",meaning:"Deserving respect",example:"He is honorable.",syn:"Respectable",ant:"Dishonorable"},
+    {word:"Peaceful",meaning:"Calm and quiet",example:"The garden is peaceful.",syn:"Tranquil",ant:"Noisy"},
+    {word:"Reliable",meaning:"Dependable",example:"She is reliable.",syn:"Trustworthy",ant:"Unreliable"},
+    {word:"Flexible",meaning:"Easily adaptable",example:"Yoga keeps you flexible.",syn:"Adaptable",ant:"Rigid"},
+    {word:"Creative",meaning:"Imaginative",example:"Artists are creative.",syn:"Innovative",ant:"Unimaginative"},
+    {word:"Ambition",meaning:"Desire to succeed",example:"His ambition drove him.",syn:"Aspiration",ant:"Indifference"},
+    {word:"Optimistic",meaning:"Positive thinking",example:"Stay optimistic.",syn:"Hopeful",ant:"Pessimistic"},
+    {word:"Punctual",meaning:"On time",example:"Be punctual for meetings.",syn:"Timely",ant:"Late"},
+    {word:"Determined",meaning:"Having a firm decision",example:"She was determined.",syn:"Resolute",ant:"Indecisive"},
+    {word:"Diligent",meaning:"Hardworking",example:"He is diligent in studies.",syn:"Assiduous",ant:"Lazy"},
+    {word:"Generative",meaning:"Producing something",example:"Generative AI models create text.",syn:"Productive",ant:"Destructive"},
+    {word:"Influential",meaning:"Having impact",example:"She is influential.",syn:"Powerful",ant:"Ineffective"},
+    {word:"Resourceful",meaning:"Good at solving problems",example:"He is resourceful.",syn:"Clever",ant:"Inept"},
+    {word:"Strategic",meaning:"Planned carefully",example:"A strategic decision.",syn:"Planned",ant:"Random"},
+    {word:"Valuable",meaning:"Having worth",example:"Time is valuable.",syn:"Precious",ant:"Worthless"},
+    {word:"Adventurous",meaning:"Willing to take risks",example:"He is adventurous.",syn:"Bold",ant:"Cautious"},
+    {word:"Analytical",meaning:"Logical thinking",example:"She has an analytical mind.",syn:"Logical",ant:"Illogical"},
+    {word:"Assertive",meaning:"Confident in expression",example:"Be assertive.",syn:"Confident",ant:"Passive"},
+    {word:"Conscientious",meaning:"Wishing to do what is right",example:"He is conscientious.",syn:"Dutiful",ant:"Negligent"},
+    {word:"Dependable",meaning:"Reliable",example:"A dependable friend.",syn:"Trustworthy",ant:"Unreliable"},
+    {word:"Efficient",meaning:"Working well",example:"He is efficient.",syn:"Productive",ant:"Inefficient"},
+    {word:"Insightful",meaning:"Having understanding",example:"An insightful comment.",syn:"Perceptive",ant:"Ignorant"},
+    {word:"Methodical",meaning:"Organized",example:"She is methodical.",syn:"Systematic",ant:"Chaotic"},
+    {word:"Practical",meaning:"Realistic",example:"A practical solution.",syn:"Realistic",ant:"Impractical"},
+    {word:"Rational",meaning:"Based on reason",example:"Stay rational.",syn:"Logical",ant:"Irrational"},
+    {word:"Responsible",meaning:"Accountable",example:"Be responsible.",syn:"Trustworthy",ant:"Irresponsible"},
+    {word:"Thorough",meaning:"Complete",example:"A thorough examination.",syn:"Comprehensive",ant:"Superficial"},
+    {word:"Versatile",meaning:"Able to do many things",example:"A versatile actor.",syn:"Flexible",ant:"Limited"},
+    {word:"Zealous",meaning:"Full of energy for a cause",example:"A zealous supporter.",syn:"Passionate",ant:"Apathetic"},
+    {word:"Resilient",meaning:"Able to recover",example:"She is resilient.",syn:"Strong",ant:"Fragile"},
+    {word:"Intuitive",meaning:"Based on instinct",example:"An intuitive decision.",syn:"Instinctive",ant:"Unthinking"},
+    {word:"Proactive",meaning:"Taking initiative",example:"Be proactive.",syn:"Forward-thinking",ant:"Passive"},
+    {word:"Cooperative",meaning:"Working together",example:"A cooperative team.",syn:"Collaborative",ant:"Unhelpful"},
+    {word:"Ambivalent",meaning:"Having mixed feelings",example:"He was ambivalent.",syn:"Uncertain",ant:"Certain"},
+    {word:"Candid",meaning:"Honest",example:"Be candid.",syn:"Frank",ant:"Dishonest"},
+    {word:"Eloquent",meaning:"Fluent and persuasive",example:"An eloquent speaker.",syn:"Fluent",ant:"Inarticulate"},
+    {word:"Impartial",meaning:"Fair",example:"Stay impartial.",syn:"Unbiased",ant:"Biased"},
+    {word:"Judicious",meaning:"Having good judgment",example:"A judicious choice.",syn:"Wise",ant:"Foolish"},
+    {word:"Meticulous",meaning:"Attention to detail",example:"A meticulous worker.",syn:"Careful",ant:"Careless"},
+    {word:"Tactful",meaning:"Polite and careful",example:"Be tactful.",syn:"Diplomatic",ant:"Rude"},
+    {word:"Innovative",meaning:"Creative and new",example:"An innovative idea.",syn:"Inventive",ant:"Conventional"},
+    {word:"Tenacious",meaning:"Persistent",example:"A tenacious student.",syn:"Persistent",ant:"Weak-willed"},
+    {word:"Upright",meaning:"Honest and moral",example:"An upright citizen.",syn:"Honest",ant:"Dishonest"}
+  ],
+
+  hard: [
+    {word:"Ephemeral",meaning:"Lasting briefly",example:"Life is ephemeral.",syn:"Short-lived",ant:"Eternal"},
+    {word:"Oblivion",meaning:"State of being forgotten",example:"He faded into oblivion.",syn:"Forgetfulness",ant:"Memory"},
+    {word:"Ubiquitous",meaning:"Found everywhere",example:"Smartphones are ubiquitous.",syn:"Everywhere",ant:"Rare"},
+    {word:"Esoteric",meaning:"Understood by few",example:"An esoteric concept.",syn:"Obscure",ant:"Obvious"},
+    {word:"Ambiguous",meaning:"Open to many meanings",example:"The answer was ambiguous.",syn:"Unclear",ant:"Clear"},
+    {word:"Loquacious",meaning:"Very talkative",example:"He is loquacious at parties.",syn:"Talkative",ant:"Silent"},
+    {word:"Pernicious",meaning:"Harmful",example:"Smoking is pernicious.",syn:"Dangerous",ant:"Harmless"},
+    {word:"Untenable",meaning:"Cannot be defended",example:"His argument was untenable.",syn:"Indefensible",ant:"Defensible"},
+    {word:"Cacophony",meaning:"Harsh sound",example:"The city is full of cacophony.",syn:"Din",ant:"Harmony"},
+    {word:"Obsequious",meaning:"Excessively obedient",example:"The assistant was obsequious.",syn:"Servile",ant:"Domineering"},
+    {word:"Insidious",meaning:"Proceeding subtly",example:"An insidious plan.",syn:"Stealthy",ant:"Harmless"},
+    {word:"Magnanimous",meaning:"Generous",example:"He was magnanimous to rivals.",syn:"Kind",ant:"Selfish"},
+    {word:"Pulchritude",meaning:"Physical beauty",example:"Admired her pulchritude.",syn:"Beauty",ant:"Ugly"},
+    {word:"Recalcitrant",meaning:"Resistant to authority",example:"A recalcitrant student.",syn:"Defiant",ant:"Obedient"},
+    {word:"Sycophant",meaning:"Flatterer",example:"A sycophant always agrees.",syn:"Flatterer",ant:"Critic"},
+    {word:"Quixotic",meaning:"Unrealistic and impractical",example:"A quixotic plan.",syn:"Idealistic",ant:"Practical"},
+    {word:"Ineffable",meaning:"Too great to describe",example:"An ineffable feeling.",syn:"Indescribable",ant:"Describable"},
+    {word:"Vicissitude",meaning:"Change of circumstances",example:"Life's vicissitudes.",syn:"Fluctuation",ant:"Stability"},
+    {word:"Obdurate",meaning:"Stubborn",example:"He was obdurate.",syn:"Stubborn",ant:"Flexible"},
+    {word:"Sartorial",meaning:"Related to clothing",example:"A sartorial choice.",syn:"Fashionable",ant:"Unfashionable"},
+    {word:"Ennui",meaning:"Boredom",example:"He felt ennui.",syn:"Tedium",ant:"Excitement"},
+    {word:"Pusillanimous",meaning:"Lacking courage",example:"A pusillanimous leader.",syn:"Cowardly",ant:"Brave"},
+    {word:"Recondite",meaning:"Difficult to understand",example:"A recondite theory.",syn:"Obscure",ant:"Simple"},
+    {word:"Sagacious",meaning:"Wise",example:"A sagacious ruler.",syn:"Shrewd",ant:"Foolish"},
+    {word:"Taciturn",meaning:"Quiet",example:"A taciturn man.",syn:"Silent",ant:"Talkative"},
+    {word:"Tempestuous",meaning:"Stormy or turbulent",example:"A tempestuous night.",syn:"Turbulent",ant:"Calm"},
+    {word:"Urbane",meaning:"Polished in manners",example:"An urbane gentleman.",syn:"Sophisticated",ant:"Rude"},
+    {word:"Vociferous",meaning:"Loud and forceful",example:"Vociferous protests.",syn:"Noisy",ant:"Quiet"},
+    {word:"Wanton",meaning:"Deliberate and unprovoked",example:"Wanton destruction.",syn:"Reckless",ant:"Cautious"},
+    {word:"Zephyr",meaning:"A gentle breeze",example:"A soft zephyr blew.",syn:"Breeze",ant:"Gale"},
+    {word:"Acrimonious",meaning:"Angry and bitter",example:"An acrimonious debate.",syn:"Bitter",ant:"Friendly"},
+    {word:"Benevolent",meaning:"Kind",example:"A benevolent ruler.",syn:"Kindhearted",ant:"Malevolent"},
+    {word:"Capricious",meaning:"Unpredictable",example:"A capricious leader.",syn:"Fickle",ant:"Steady"},
+    {word:"Defenestrate",meaning:"Throw out of window",example:"He defenestrated the papers.",syn:"Eject",ant:"Keep"},
+    {word:"Exacerbate",meaning:"Make worse",example:"This will exacerbate the problem.",syn:"Aggravate",ant:"Alleviate"},
+    {word:"Facetious",meaning:"Treating serious issues with humor",example:"A facetious remark.",syn:"Flippant",ant:"Serious"},
+    {word:"Garrulous",meaning:"Talkative",example:"A garrulous neighbor.",syn:"Chatty",ant:"Silent"},
+    {word:"Harangue",meaning:"Lengthy aggressive speech",example:"He delivered a harangue.",syn:"Lecture",ant:"Praise"},
+    {word:"Iconoclast",meaning:"Someone challenging beliefs",example:"An iconoclast thinker.",syn:"Rebel",ant:"Conformist"},
+    {word:"Jubilant",meaning:"Very happy",example:"They were jubilant.",syn:"Elated",ant:"Sad"},
+    {word:"Kaleidoscopic",meaning:"Constantly changing",example:"A kaleidoscopic scene.",syn:"Varied",ant:"Static"},
+    {word:"Lugubrious",meaning:"Looking sad",example:"A lugubrious face.",syn:"Mournful",ant:"Cheerful"},
+    {word:"Munificent",meaning:"Very generous",example:"A munificent gift.",syn:"Lavish",ant:"Stingy"},
+    {word:"Nefarious",meaning:"Wicked",example:"A nefarious plan.",syn:"Evil",ant:"Good"},
+    {word:"Obsequious",meaning:"Excessively obedient",example:"An obsequious follower.",syn:"Servile",ant:"Domineering"},
+    {word:"Parsimonious",meaning:"Very frugal",example:"A parsimonious man.",syn:"Stingy",ant:"Generous"},
+    {word:"Querulous",meaning:"Complaining",example:"A querulous child.",syn:"Petulant",ant:"Content"},
+    {word:"Resplendent",meaning:"Shining brilliantly",example:"A resplendent sunset.",syn:"Radiant",ant:"Dull"},
+    {word:"Stentorian",meaning:"Very loud",example:"A stentorian voice.",syn:"Thunderous",ant:"Soft"},
+    {word:"Trepidation",meaning:"Fear or apprehension",example:"He approached with trepidation.",syn:"Fear",ant:"Confidence"},
+    {word:"Vicissitude",meaning:"Change of circumstances",example:"Life's vicissitudes.",syn:"Fluctuation",ant:"Stability"},
+    {word:"Winsome",meaning:"Charming",example:"A winsome smile.",syn:"Attractive",ant:"Unappealing"},
+    {word:"Xenophobic",meaning:"Fear of strangers",example:"A xenophobic attitude.",syn:"Prejudiced",ant:"Open-minded"},
+    {word:"Yen",meaning:"A strong desire",example:"She has a yen for adventure.",syn:"Desire",ant:"Aversion"},
+    {word:"Zealot",meaning:"Fanatical person",example:"A political zealot.",syn:"Fanatic",ant:"Moderate"}
+  ]
+};
+
+    const tableBody = document.getElementById("wordTableBody");
+    const searchInput = document.getElementById("searchInput");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const notFoundMessage = document.getElementById("notFoundMessage");
+
+    function getRowClass(level) {
+      if(level === "easy") return "easy-row";
+      if(level === "medium") return "medium-row";
+      if(level === "hard") return "hard-row";
+      return "";
+    }
+
+    function renderWords(level) {
+      tableBody.innerHTML = "";
+      const rowClass = getRowClass(level);
+      words[level].forEach(w => {
+        tableBody.innerHTML += `
+          <tr class="${rowClass}">
+            <td><strong>${w.word}</strong></td>
+            <td>${w.meaning}</td>
+            <td>${w.syn}</td>
+            <td>${w.ant}</td>
+            <td><em>${w.example}</em></td>
+          </tr>
+        `;
+      });
+    }
+
+    // Initial load
+    renderWords("easy");
+
+    // Filter by level
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderWords(btn.dataset.level);
+        searchInput.value = "";
+        notFoundMessage.style.display = "none";
+      });
+    });
+
+    // Search functionality
+    searchInput.addEventListener("input", () => {
+      const searchValue = searchInput.value.toLowerCase();
+      let found = false;
+      const rows = tableBody.querySelectorAll("tr");
+      rows.forEach(row => {
+        const wordCell = row.cells[0].textContent.toLowerCase();
+        if(wordCell.includes(searchValue)) {
+          row.style.display = "";
+          found = true;
+        } else {
+          row.style.display = "none";
+        }
+      });
+      notFoundMessage.style.display = found ? "none" : "block";
+    });
+  </script>
+
+</body>
+</html>

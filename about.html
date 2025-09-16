@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Vocabulary Journal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "Nunito", sans-serif;
+      background: #f4f6fb;
+      color: #333;
+    }
+    h1, h2 {
+      font-family: "Merriweather", serif;
+    }
+    .navbar-brand {
+      font-family: "Pacifico", cursive;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #ff5722, #ff9800);
+    }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.8rem;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-family: "Nunito", sans-serif;
+    }
+    .nav-link:hover {
+      color: #000 !important;
+      background: #ffd54f;
+      border-radius: 6px;
+      padding: 6px 12px;
+    }
+
+    /* Hero */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 140px 25px;
+      position: relative;
+      margin: 30px 0;
+      border-radius: 20px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      border-radius: 20px;
+    }
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: bold;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-top: 12px;
+    }
+
+    /* Sections */
+    .section {
+      margin: 60px auto;
+      padding: 50px 30px;
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+      color: #444;
+      font-family: "Merriweather", serif;
+    }
+
+    /* Info Cards */
+    .info-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      padding: 25px;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .icon-box {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #ff9800;
+    }
+
+    /* Team Cards */
+    .team-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .team-card img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .linkedin-btn {
+      margin-top: 10px;
+      display: inline-block;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 30px;
+      background: #0a66c2;
+      color: white;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+    .linkedin-btn:hover {
+      background: #004182;
+    }
+
+    /* Footer */
+    footer {
+      background: #212121;
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+      margin-top: 60px;
+      border-radius: 15px 15px 0 0;
+    }
+    footer a {
+      color: #ffd54f;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">📖 Vocabulary With Us</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="bi bi-list"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door-fill"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="wordlist.html"><i class="bi bi-journal-text"></i> Word List</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html"><i class="bi bi-play-btn-fill"></i> Resources</a></li>
+          <li class="nav-item"><a class="nav-link active" href="about.html"><i class="bi bi-people-fill"></i> About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>About Us</h1>
+    <p>Your journey to a stronger vocabulary starts here</p>
+  </div>
+
+  <!-- About Section -->
+  <div class="section container">
+    <h2>Our Mission & Vision</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="info-card">
+          <div class="icon-box"><i class="bi bi-lightbulb-fill"></i></div>
+          <h4>Our Mission</h4>
+          <p>We aim to make vocabulary learning simple, fun, and effective. Interactive tools, real-life examples, and creative exercises help learners of all levels.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-card">
+          <div class="icon-box"><i class="bi bi-flag-fill"></i></div>
+          <h4>Our Vision</h4>
+          <p>We envision a world where everyone communicates confidently. Making vocabulary fun and accessible inspires lifelong learning habits.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-card">
+          <div class="icon-box"><i class="bi bi-book-half"></i></div>
+          <h4>What We Provide</h4>
+          <p>Curated word lists, games, stories, and resources encourage practical usage and make learning both enjoyable and impactful.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-card">
+          <div class="icon-box"><i class="bi bi-people-fill"></i></div>
+          <h4>Who We Are</h4>
+          <p>We are passionate learners and educators building a community where everyone can share, learn, and grow together.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Meet the Team -->
+  <div class="section container">
+    <h2>Meet the Team – <span style="color:#ff9800;">Trio Poppins</span></h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="team-card">
+          <img src="https://thumbs.dreamstime.com/b/woman-user-icon-profile-avatar-person-isolated-background-vector-professional-diverse-uses-386566305.jpg" alt="Rickshitha">
+          <h5>Rickshitha A</h5>
+          <p>BSc CS (AI) – 2nd Year</p>
+          <a href="https://www.linkedin.com/in/rickshithaanandakumar/" target="_blank" class="linkedin-btn"><i class="bi bi-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="team-card">
+          <img src="https://thumbs.dreamstime.com/b/woman-user-icon-profile-avatar-person-isolated-background-vector-professional-diverse-uses-386566305.jpg" alt="Harini">
+          <h5>Harini R</h5>
+          <p>BSc CS (AI) – 2nd Year</p>
+          <a href="https://www.linkedin.com/in/harini-rajesh-632a6b315/" target="_blank" class="linkedin-btn"><i class="bi bi-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="team-card">
+          <img src="https://thumbs.dreamstime.com/b/woman-user-icon-profile-avatar-person-isolated-background-vector-professional-diverse-uses-386566305.jpg" alt="Fathima Hafeesha">
+          <h5>Fathima Hafeesha P</h5>
+          <p>BSc CS (AI) – 2nd Year</p>
+          <a href="https://www.linkedin.com/in/fathima-hafeesha-p-978a73315/" target="_blank" class="linkedin-btn"><i class="bi bi-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Vocabulary Journal. All Rights Reserved.</p>
+    
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
